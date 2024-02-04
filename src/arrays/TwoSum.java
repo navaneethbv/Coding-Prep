@@ -29,27 +29,52 @@ Given an array of integers nums and an integer target, return indices of the two
 
 */
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TwoSum {
     public static void main(String[] args) {
-        int [] nums = {1, 3, 2, 9, 11, 15, 7}; int target = 9;
+        int[] nums = {1, 3, 2, 9, 11, 15, 7};
+        int target = 26;
         //int [] nums = {3, 3}; int target = 6;
-        System.out.println("The index of the elements equal to target = " + target + " is " + twoSum(nums, target)[0]
-                + " and " + twoSum(nums, target)[1]);
+        if((twoSum(nums, target) != null)) {
+            System.out.println("The index of the elements equal to target = " + target + " is " + twoSum(nums, target)[0]
+                    + " and " + twoSum(nums, target)[1]);
+            System.out.println("The numbers which sum to the target " + target + " are " + twoSumNumbers(nums, target).get(0) + " and " + twoSumNumbers(nums, target).get(1));
+        } else {
+            System.out.println("No such elements exists");
+        }
     }
 
     private static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Set<Character> set = new HashSet<>();
         int[] array = new int[2];
-        for(int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             int value = target - nums[i];
-            if(map.containsKey(value)) {
-                return new int[] { map.get(value), i };
+            if (map.containsKey(value)) {
+                return new int[]{map.get(value), i};
             }
             map.put(nums[i], i);
         }
         return null;
     }
+
+    private static List<Integer> twoSumNumbers(int[] nums, int target) {
+        List<Integer> answer = new ArrayList<>();
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            {
+                int difference = target - nums[i];
+                if (map.containsKey(difference)) {
+                    answer.add(difference);
+                    answer.add(nums[i]);
+                }
+                map.put(nums[i], i);
+            }
+
+        }
+        return answer;
+    }
+
 }
