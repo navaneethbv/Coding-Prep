@@ -1,2 +1,14 @@
 # Project exclude paths
 /out/
+
+# Ignore everything
+*
+
+# But not the src directory
+!src/
+
+# Inside src, ignore everything...
+src/*
+# ...except for .java files (if you want to include all Java files)
+!src/**/*.java
+
