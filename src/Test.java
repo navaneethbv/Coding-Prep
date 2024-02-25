@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Test {
@@ -8,8 +9,8 @@ public class Test {
     }
 
     static List<Integer> sortNumbers(List<Integer> numbers) {
-        numbers.stream().sorted().forEach(System.out::println);
-
+        Collections.sort(numbers, (s1, s2) -> s1.compareTo(s2));
+        numbers.forEach(System.out::println);
         return numbers;
     }
 }
